@@ -1,0 +1,272 @@
+/* Topologist-core aesthetic:
+   - “atlas paper” background
+   - subtle contour/level-set lines
+   - knot/loop motifs (very light)
+   - still compatible with your existing class names
+*/
+
+:root{
+  /* palette */
+  --bg:#070a12;            /* deep night */
+  --panel:#0b1020;         /* dark slate */
+  --panel2:#0c1429;        /* slightly bluer */
+  --text:#eef1fb;
+  --muted:#b7bfdc;
+  --link:#8bb6ff;
+  --accent:#71ffd6;
+
+  /* geometry */
+  --border:rgba(255,255,255,.14);
+  --border2:rgba(255,255,255,.10);
+  --shadow: 0 18px 40px rgba(0,0,0,.45);
+
+  /* topologist textures */
+  --grid: rgba(255,255,255,.06);
+  --contour: rgba(139,182,255,.08);
+  --loop: rgba(113,255,214,.08);
+
+  /* motion */
+  --ease: cubic-bezier(.2,.8,.2,1);
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  color:var(--text);
+  line-height:1.65;
+
+  /* Layered “atlas” field:
+     1) faint paper grain
+     2) contour lines (level sets)
+     3) coordinate grid
+     4) spotlight gradients
+     5) base color
+  */
+  background:
+    /* grain */
+    radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,.06) 0 1px, transparent 2px) 0 0/120px 120px,
+    radial-gradient(1px 1px at 70% 80%, rgba(255,255,255,.05) 0 1px, transparent 2px) 0 0/160px 160px,
+
+    /* level-set/contour vibes */
+    repeating-radial-gradient(circle at 18% 12%,
+      transparent 0 22px,
+      var(--contour) 22px 23px,
+      transparent 23px 44px) ,
+    repeating-radial-gradient(circle at 86% 18%,
+      transparent 0 26px,
+      rgba(113,255,214,.07) 26px 27px,
+      transparent 27px 52px),
+
+    /* coordinate grid */
+    linear-gradient(var(--grid) 1px, transparent 1px) 0 0/56px 56px,
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0/56px 56px,
+
+    /* spotlights */
+    radial-gradient(900px 680px at 18% 0%, rgba(139,182,255,.16), transparent 60%),
+    radial-gradient(820px 620px at 78% 10%, rgba(113,255,214,.11), transparent 55%),
+
+    /* base */
+    var(--bg);
+}
+
+/* Links */
+a{color:var(--link); text-decoration:none}
+a:hover{text-decoration:underline}
+a:focus-visible{
+  outline:2px solid rgba(139,182,255,.55);
+  outline-offset:3px;
+  border-radius:8px;
+}
+
+/* Layout */
+.container{max-width:980px;margin:0 auto;padding:28px 18px}
+
+/* Top bar: “glass + chart paper” */
+.topbar{
+  position: sticky; top:0; z-index:10;
+  background:
+    linear-gradient(180deg, rgba(7,10,18,.82), rgba(7,10,18,.62)),
+    linear-gradient(var(--grid) 1px, transparent 1px) 0 0/72px 72px,
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0/72px 72px;
+  backdrop-filter: blur(10px);
+  border-bottom:1px solid var(--border);
+}
+
+.nav{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:14px;
+  max-width:980px; margin:0 auto; padding:14px 18px;
+}
+
+.brand{display:flex; flex-direction:column; gap:2px}
+.brand .name{
+  font-weight:850;
+  letter-spacing:.2px;
+  text-shadow: 0 1px 0 rgba(0,0,0,.25);
+}
+.brand .tag{font-size:.92rem; color:var(--muted)}
+
+/* Nav links: like labeled patches on an atlas */
+.links{
+  display:flex; flex-wrap:wrap; gap:10px 14px; align-items:center;
+}
+.links a{
+  padding:8px 10px;
+  border:1px solid transparent;
+  border-radius:12px;
+  transition: transform 180ms var(--ease), background 180ms var(--ease), border-color 180ms var(--ease);
+}
+.links a:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,.05);
+  text-decoration:none;
+}
+.links a.active{
+  border-color:var(--border);
+  background:
+    linear-gradient(160deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+  box-shadow: 0 8px 18px rgba(0,0,0,.25);
+}
+
+/* Hero: “coordinate chart + subtle loop” */
+.hero{
+  margin-top:18px;
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:22px 18px;
+  box-shadow: var(--shadow);
+
+  background:
+    /* a single “loop” highlight */
+    radial-gradient(260px 180px at 92% 28%, rgba(113,255,214,.12), transparent 60%),
+    radial-gradient(260px 180px at 88% 22%, rgba(113,255,214,.08), transparent 62%),
+
+    /* atlas grid overlay */
+    linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px) 0 0/64px 64px,
+    linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px) 0 0/64px 64px,
+
+    /* base panel gradient */
+    linear-gradient(160deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+}
+.hero h1{margin:0 0 6px; font-size:1.95rem}
+.hero p{margin:8px 0; color:var(--muted); font-size:1.04rem}
+
+/* Badges: like small labeled invariants */
+.badges{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
+.badge{
+  font-size:.92rem;
+  padding:7px 10px;
+  border:1px solid var(--border2);
+  border-radius:999px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  box-shadow: 0 10px 18px rgba(0,0,0,.18);
+}
+
+/* Grid */
+.grid{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap:16px;
+  margin-top:18px;
+}
+@media (min-width: 860px){
+  .grid{ grid-template-columns: 1.2fr .8fr; }
+}
+
+/* Cards: “manifold charts” with soft boundary */
+.card{
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:16px 14px;
+  box-shadow: 0 12px 26px rgba(0,0,0,.30);
+  background:
+    /* micro contour */
+    repeating-radial-gradient(circle at 12% 18%,
+      transparent 0 18px,
+      rgba(139,182,255,.06) 18px 19px,
+      transparent 19px 36px),
+    linear-gradient(160deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+}
+.card h2{margin:0 0 8px; font-size:1.22rem}
+.card p{margin:10px 0; color:var(--muted)}
+.list{margin:10px 0 0; padding-left:18px; color:var(--muted)}
+
+/* Key-value blocks */
+.kv{
+  display:grid;
+  grid-template-columns: 110px 1fr;
+  gap:8px 10px;
+  margin-top:8px;
+}
+.kv div{color:var(--muted)}
+.kv strong{color:var(--text)}
+
+/* Separator: “dashed boundary” */
+hr.sep{
+  border:none;
+  border-top:1px dashed rgba(255,255,255,.20);
+  margin:14px 0;
+}
+
+/* Items: like theorem statements with gentle borders */
+.item{
+  padding:12px 0;
+  border-top:1px dashed rgba(255,255,255,.18);
+}
+.item:first-child{border-top:none}
+
+.item .title{
+  display:flex; flex-wrap:wrap; gap:10px;
+  align-items:baseline; justify-content:space-between;
+}
+.item .title h3{margin:0; font-size:1.06rem}
+.item .meta{color:var(--muted); font-size:.92rem}
+
+/* Pills: like small “open sets” */
+.pills{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px}
+.pill{
+  font-size:.86rem;
+  color:var(--muted);
+  border:1px solid var(--border2);
+  border-radius:999px;
+  padding:5px 9px;
+  background:
+    radial-gradient(120px 60px at 30% 30%, rgba(139,182,255,.10), transparent 60%),
+    rgba(255,255,255,.03);
+}
+
+/* Buttons: “glassy patch” */
+.btnrow{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px}
+.btn{
+  display:inline-block;
+  padding:9px 12px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  background:
+    radial-gradient(240px 80px at 20% 10%, rgba(139,182,255,.12), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  transition: transform 180ms var(--ease), background 180ms var(--ease), border-color 180ms var(--ease);
+}
+.btn:hover{
+  transform: translateY(-1px);
+  background:
+    radial-gradient(240px 80px at 20% 10%, rgba(113,255,214,.12), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+  text-decoration:none;
+}
+
+/* Footer */
+.footer{
+  margin:30px 0 10px;
+  color:rgba(255,255,255,.62);
+  font-size:.92rem;
+  text-align:center;
+}
+.small{font-size:.92rem;color:var(--muted)}
+
+/* Optional: nicer selection */
+::selection{
+  background: rgba(139,182,255,.28);
+}
