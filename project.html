@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projects — Desmond Leitz</title>
+  <link rel="stylesheet" href="assets/style.css" />
+
+  <!-- MathJax (optional; keeps theme consistent if you include math in writeups) -->
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <!-- Small inline style for responsive embeds -->
+  <style>
+    .embedWrap{
+      margin-top:12px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:16px;
+      overflow:hidden;
+      background: rgba(255,255,255,.03);
+    }
+    .embedFrame{
+      width:100%;
+      height:820px; /* adjust if you want shorter/taller embeds */
+      border:0;
+      display:block;
+    }
+    .embedNote{
+      margin-top:10px;
+      color:rgba(255,255,255,.60);
+      font-size:.92rem;
+    }
+  </style>
+</head>
+<body>
+
+<header class="topbar">
+  <nav class="nav">
+    <div class="brand">
+      <div class="name">Desmond Leitz</div>
+      <div class="tag">Projects</div>
+    </div>
+    <div class="links">
+      <a href="index.html">Home</a>
+      <a href="papers.html">Papers</a>
+      <a class="active" href="projects.html">Projects</a>
+      <a href="mailto:des.leitz@gmail.com">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main class="container">
+
+  <section class="hero">
+    <h1>Projects</h1>
+    <p>
+      **FILL IN**
+      </p>
+    <div class="badges">
+      <span class="badge">**FILL IN**</span>
+      <span class="badge">**FILL IN**</span>
+      <span class="badge">**FILL IN**</span>
+      <span class="badge">**FILL IN**</span>
+    </div>
+  </section>
+
+  <section class="card" style="margin-top:18px">
+    <h2>Interactive apps</h2>
+
+    <!-- **FILL IN** -->
+    <div class="item">
+      <div class="title">
+        <h3>**FILL IN**</h3>
+        <div class="meta">**FILL IN**</div>
+      </div>
+      <p class="small">
+        **FILL IN**
+      </p>
+
+      <div class="btnrow">
+        <a class="btn"
+           href="https://llmvisualization-fokn49twgatwkas6zkbnrv.streamlit.app/"
+           target="_blank" rel="noopener">
+          Open app →
+        </a>
+      </div>
+
+      <div class="pills">
+        <span class="pill">**FILL IN**</span>
+        <span class="pill">**FILL IN**</span>
+        <span class="pill">**FILL IN**</span>
+      </div>
+
+      <div class="embedWrap">
+        <iframe class="embedFrame"
+          src="https://llmvisualization-fokn49twgatwkas6zkbnrv.streamlit.app/?embed=true"
+          loading="lazy"
+          referrerpolicy="no-referrer">
+        </iframe>
+      </div>
+      <div class="embedNote">
+        If the embed does not load (some browsers block third-party iframes), use the “Open app” button above.
+      </div>
+    </div>
+
+   
+
+    <hr class="sep" />
+    <p class="small">
+     I’m happy to share research via email.
+    </p>
+  </section>
+
+  <div class="footer">
+    © <span id="year"></span> Desmond Leitz
+  </div>
+
+</main>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
